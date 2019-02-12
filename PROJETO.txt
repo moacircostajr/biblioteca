@@ -1,0 +1,34 @@
+APRESENTAR AUTORES NA LISTAGEM PRINCIPAL
+APRESENTAR LISTAGEM GERAL PARA IMPRESSÃO (EM PDF)
+BACKUP
+PROGRAMA DE INSTALAÇÃO
+
+ISBN 99-9999-999-9
+LANÇAMENTO CONTÉM APENAS O ANO
+INCLUIR DATA DO REGISTRO
+INCLUIR O NUMERO DE REGISTRO
+INCLUIR O TOMBAMENTO
+INCLUIR A CLASSIFICAÇÃO
+INCLUIR O CATALOGO TOPOGRAFICO
+INCLUIR EDITORA
+INCLUIR VOLUME/EXEMPLAR
+INLCUIR O ORIGEM(DOAÇÃO/COMPRA/PERMUTA)
+INCLUIR A IDENTIFICAÇÃO DA ORIGEM
+
+ELIMINAR PREÇO
+
+
+============================================================== TELA PRINCIPAL ======================================================================
+
+       CLASSIFICAÇÃO       CATALOGO           TITULO(OBG)           AUTOR(ES)(OBG)            ANO DE LANÇAMENTO           VOLUME/EXEMPLAR
+                          TOPOGRAFICO
+
+====================================================================================================================================================
+
+
+
+================================================================== LISTAGEM GERAL ==================================================================
+
+  DATA DE REGISTRO    Nº DE REGISTRO   AUTOR(ES)    TITULO     VOLUME/EX     IDENTIFICAÇÃO DA ORIGEM    ORIGEM      EDITORA     ANO DE LANÇAMENTO
+
+====================================================================================================================================================

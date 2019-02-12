@@ -1,0 +1,1 @@
+c:\Program Files\...\mysqldump -ubiblioteca -pb1bl10t3c4 biblioteca  > c:\bkpBiblioteca.sql

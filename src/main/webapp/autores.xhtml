@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="_template.xhtml">
+    <ui:define name="titulo">
+        <h1 class="titulo">Autores</h1>
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:form id="formAutor">
+            <p:fieldset legend="Dados do Autor">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Nome" for="nome"/>
+                    <p:autoComplete value="#{autoresBean.autor.nome}" id="nome" required="true" completeMethod="#{autoresBean.autoComplete}" effect="fade">
+                    </p:autoComplete>
+                </h:panelGrid>
+                <p:commandButton value="Gravar" action="#{autoresBean.Gravar}" process="@form" update="@form :formTabelaAutors"/>
+            </p:fieldset>
+        </h:form>
+        <h:form id="formTabelaAutors">
+            <p:dataList value="#{autoresBean.autores()}" var="autor" type="definition" id="listaAutores">
+                <f:facet name="header">
+                    Autores
+                </f:facet>
+                <p:commandButton icon="fa fa-fw fa-edit" action="#{autoresBean.carregaAutor(autor)}" process="@this" update="formAutor"/>
+                <p:commandButton icon="fa fa-fw fa-remove" action="#{autoresBean.remover(autor)}" process="@this" update="@form"/>
+                #{autor.nome}
+            </p:dataList>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
