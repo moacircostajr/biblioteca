@@ -1,0 +1,111 @@
+body {
+    background-color: rgba(152, 176, 135, 0.56);
+}
+
+/*
+.botao-sair {
+	position: absolute;
+	left: 1%;
+	top: 3%;
+}
+*/
+
+.ficha-livro {
+    padding: 1% 1.5% 2% 1.5%;
+
+}
+
+.painel-login {
+    width: 300px;
+    margin-top: 12%;
+    margin-left: calc(50% - 150px);
+}
+
+.campo-titulo {
+    margin: 0 0 50px 0;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.titulo.login {
+    margin-top: 10%;
+}
+
+.ui-datalist {
+    /*width:300px;*/
+    margin-bottom: 20px;
+}
+
+.ui-datalist-item {
+    padding:3px;
+}
+
+.paginated .ui-datalist-data {
+    padding-left: 20px;
+}
+
+
+.informacao-senha {
+    position: relative;
+    float: right;
+    margin-top: -5%;
+    margin-right: 2%;
+    width: 611px;
+}
+
+.botao-principal {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px black;
+    transition: 2s;
+}
+.botao-principal:hover {
+    width: 300px;
+    height: 300px;
+}
+
+#titulo-app {
+    text-align: center;
+}
+
+#menu-principal {
+    margin: auto;
+}
+
+.legenda{
+    text-align: center;
+}
+
+.area-botao-principal {
+    padding: 20px;
+}
+/*
+.voltar {
+	position: absolute;
+    left: calc(50% - 81.5px);
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 7px;
+    text-decoration:none;
+    border-style: solid;
+    border-width: 1px;
+    width: 130px;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px; }
+
+/*
+
+.container-principal {
+    padding: 0.5% 0;
+    margin-left: 10%;
+}
+*/
+

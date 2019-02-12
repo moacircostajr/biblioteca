@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:P="http://java.sun.com/jsf/html">
+
+<ui:composition template="_template.xhtml">
+    <ui:define name="titulo">
+        <h1 class="titulo">Livros</h1>
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="formLivros">
+            <p:fieldset legend="Dados do Livro">
+                <p:panelGrid columns="6" layout="grid" styleClass="ficha-livro">
+                    <p:outputLabel value="Titulo" for="titulo"/>
+                    <p:autoComplete value="#{livrosBean.livro.titulo}" id="titulo" required="true"  completeMethod="#{livrosBean.autoComplete}" effect="fade">
+                        <f:ajax event="blur"/>
+                    </p:autoComplete>
+                    <p:outputLabel value="Data do registro" for="dataRegistro"/>
+                    <p:calendar id="dataRegistro" value="#{livrosBean.livro.dataRegistro.time}" pattern="dd/MM/yyyy" mask="true" timeZone="America/Fortaleza"/>
+                    <p:outputLabel value="Número de Registro" for="numeroRegistro"/>
+                    <p:inputNumber id="numeroRegistro" value="#{livrosBean.livro.numeroRegistro}" decimalPlaces="0"/>
+                    <p:outputLabel value="Tombamento" for="tombamento"/>
+                    <p:inputText id="tombamento" value="#{livrosBean.livro.tombamento}"/>
+                    <p:outputLabel value="Classificação" for="classificacao"/>
+                    <p:inputText id="classificacao" value="#{livrosBean.livro.classificacao}"/>
+                    <p:outputLabel value="Catálogo Topográfico" for="catalogoTopografico"/>
+                    <p:inputText id="catalogoTopografico" value="#{livrosBean.livro.catalogoTopografico}"/>
+                    <p:outputLabel value="Editora" for="editora"/>
+                    <p:inputText id="editora" value="#{livrosBean.livro.editora}"/>
+                    <p:outputLabel value="Volume" for="volume"/>
+                    <p:inputNumber id="volume" value="#{livrosBean.livro.volume}" decimalPlaces="0"/>
+                    <p:outputLabel value="Exemplares" for="exemplares"/>
+                    <p:inputNumber id="exemplares" value="#{livrosBean.livro.exemplares}" decimalPlaces="0"/>
+                    <p:outputLabel value="ISBN" for="isbn"/>
+                    <p:inputText value="#{livrosBean.livro.isbn}" id="isbn"/>
+                    <p:outputLabel value="Ano de Lançamento" for="lancamento"/>
+                    <p:inputText value="#{livrosBean.livro.anoLancamento}" id="lancamento">
+                        <f:passThroughAttribute name="maxlength" value="4"/>
+                    </p:inputText>
+                    <p:outputLabel value="Origem" for="origem"/>
+                    <p:selectOneMenu value="#{livrosBean.livro.origem}" id="origem">
+                        <f:selectItems value="#{livrosBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Fornecedor" for="fornecedor"/>
+                    <p:inputText id="fornecedor" value="#{livrosBean.livro.identificacaoOrigem}"/>
+                </p:panelGrid>
+            </p:fieldset>
+            <br/>
+            <p:fieldset legend="Dados do Autor">
+                <p:panelGrid columns="4">
+                    <p:outputLabel value="Autor(es))" for="autor"/>
+
+                    <p:selectOneMenu value="#{livrosBean.autorId}" id="autor">  <!-- captura a escolha feita pelo usuário -->
+                        <f:selectItems value="#{livrosBean.todosOsAutores}" var="autor" itemLabel="#{autor.nome}" itemValue="#{autor.id}"/>  <!-- apresenta o nome do autor e registra o id do autor escolhido -->
+                    </p:selectOneMenu>
+                    <p:commandButton value="Incluir" action="#{livrosBean.gravarAutor()}" process="@this autor" update="tabelaAutores"/>
+                    <p:commandLink value="Cadastrar Novo Autor" action="#{livrosBean.formAutor}" immediate="true" update="@all"/>
+                </p:panelGrid>
+
+
+
+                <p:dataTable value="#{livrosBean.getAutoresDoLivro()}" var="autorDT" id="tabelaAutores" emptyMessage="Nenhum autor registrado">
+                    <p:column>
+                        <h:outputText value="#{autorDT.nome}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink value="remover" action="#{livrosBean.removerAutor(autorDT)}" process="@this" update="@form"/>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+            <br/>
+            <p:commandButton value="Registrar" action="#{livrosBean.setLivro()}" process="@form" update="@form :formTabelaLivros:tabelaLivros"/>
+        </h:form>
+        <br/><br/>
+        <h:form id="formTabelaLivros">
+            <p:dataTable value="#{livrosBean.livros}" var="livro" id="tabelaLivros" paginator="true" rows="10">
+                <f:facet name="header">Livros</f:facet>
+                <p:column headerText="Classificação" sortBy="#{livro.classificacao}" style="text-align: center">
+                    <h:outputText value="#{livro.classificacao}"/>
+                </p:column>
+                <p:column headerText="Catálogo Topográfico" sortBy="#{livro.catalogoTopografico}" style="text-align: center">
+                    <h:outputText value="#{livro.catalogoTopografico}"/>
+                </p:column>
+                <p:column headerText="Titulo" sortBy="#{livro.titulo}" filterBy="#{livro.titulo}" filterMatchMode="contains" style="text-align: center"> <!-- contains, startsWith,... -->
+                    <h:outputText value="#{livro.titulo}"/>
+                </p:column>
+                <p:column headerText="Autoria" sortBy="#{autor.nome}" style="text-align: center">
+                    <h:dataTable value="#{livro.autores}" var="autor">
+                        <h:column>
+                            <h:outputText value="#{autor.nome}"/>
+                        </h:column>
+                    </h:dataTable>
+                </p:column>
+                <p:column headerText="Ano de Lançamento" sortBy="#{livro.anoLancamento}" style="text-align: center">
+                    <h:outputText value="#{livro.anoLancamento}"/>
+                </p:column>
+                <p:column headerText="Volume" style="text-align: center">
+                    <h:outputText value="#{livro.volume}"/>
+                </p:column>
+                <p:column headerText="Exemplares" style="text-align: center">
+                    <h:outputText value="#{livro.exemplares}"/>
+                </p:column>
+                <p:column headerText="Alterar" style="text-align: center">
+                    <p:commandLink value="alterar" action="#{livrosBean.carregarLivro(livro)}" update="formLivros"/>
+                </p:column>
+                <p:column headerText="Remover" style="text-align: center">
+                    <p:commandLink value="remover" action="#{livrosBean.removerLivro(livro)}" update="@form"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,6 @@
+<beans>
+    <interceptors>
+        <class>br.com.nobreak.biblioteca.service.ControleDeTransacoesService</class>
+    </interceptors>
+</beans>
+<!--mundo CDI-->
