@@ -2,11 +2,7 @@
 # biblioteca
 Software criado com o propósito de auxiliar o gerenciamento de bibliotecas.
 
-Desenvolvido com as tecnologias MySQL, Java, CDI, JSF e iReport. 
-
-Software criado com o objetivo servir a API de uma plataforma de ensino online.
-
-Desenvolvido com a linguagem Java 8 e o banco de dados MySQL.
+Desenvolvido com as tecnologias MySQL, Java 8, CDI, JSF e iReport. 
 
 ### Introdução
 
